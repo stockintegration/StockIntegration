@@ -155,7 +155,7 @@ public class DataMethod {
 	        BufferedReader br=null;
 	        try { 
 	        	
-	            br = new BufferedReader(new FileReader("main/java/com/example/stock/python/data/monthk.csv"));
+	            br = new BufferedReader(new FileReader("src/main/java/com/example/stock/python/data/monthk.csv"));
 	            String line = ""; 
 	            while ((line = br.readLine()) != null) { 
 	            	
@@ -200,7 +200,7 @@ public class DataMethod {
 	        BufferedReader br=null;
 	        try { 
 	        	
-	            br = new BufferedReader(new FileReader("main/java/com/example/stock/python/ts_code.csv"));
+	            br = new BufferedReader(new FileReader("src/main/java/com/example/stock/python/ts_code.csv"));
 	            String line = ""; 
 	            while ((line = br.readLine()) != null) { 
 	            	if (k==0) {
@@ -240,7 +240,7 @@ public class DataMethod {
 	        ArrayList<String> change_reason=new ArrayList<String>();
 	        try { 
 	        	
-	            br = new BufferedReader(new FileReader("main/java/com/example/stock/python/data/forecast.csv"));
+	            br = new BufferedReader(new FileReader("src/main/java/com/example/stock/python/data/forecast.csv"));
 	            String line = ""; 
 	            while ((line = br.readLine()) != null) { 
 	            	int index=line.indexOf(",");
