@@ -18,7 +18,7 @@ public class DataMethod {
         BufferedReader br=null;
         try { 
         	int k=0;
-            br = new BufferedReader(new FileReader("main/java/com/example/stock/python/dfpl.csv"));
+            br = new BufferedReader(new FileReader("src/main/java/com/example/stock/python/dfpl.csv"));
             String line = ""; 
             while ((line = br.readLine()) != null) { 
             	if (k==0){
@@ -44,7 +44,7 @@ public class DataMethod {
         System.out.println("________________________________");
         BufferedReader br1=null;
         try { 
-            br1 = new BufferedReader(new FileReader("main/java/com/example/stock/python/agpl.csv"));
+            br1 = new BufferedReader(new FileReader("src/main/java/com/example/stock/python/agpl.csv"));
             String line = ""; 
             while ((line = br1.readLine()) != null) { 
             
@@ -76,7 +76,7 @@ public class DataMethod {
 		 Stock s=new Stock();
 		 BufferedReader br=null;
 		 try {
-			 br = new BufferedReader(new FileReader("main/java/com/example/stock/python/data/stockbasic.csv"));
+			 br = new BufferedReader(new FileReader("src/main/java/com/example/stock/python/data/stockbasic.csv"));
 			 String line = "";
 			 while ((line = br.readLine()) != null) {
 
