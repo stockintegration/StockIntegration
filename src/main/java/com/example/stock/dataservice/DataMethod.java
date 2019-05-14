@@ -318,7 +318,7 @@ public class DataMethod {
 
 		 BufferedReader br=null;
 		 try {
-			 br = new BufferedReader(new FileReader("src/com/example/stock/python/data/todaydata.csv"));
+			 br = new BufferedReader(new FileReader("src/main/java/com/example/stock/python/data/todaydata.csv"));
 			 String line = "";
 			 while ((line = br.readLine()) != null) {
 				 //System.out.println(line);
