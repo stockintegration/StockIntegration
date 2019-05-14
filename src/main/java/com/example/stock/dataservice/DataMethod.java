@@ -3,11 +3,13 @@ package com.example.stock.dataservice;
 import com.example.stock.Entity.Forecast;
 import com.example.stock.Entity.Kline;
 import com.example.stock.Entity.Stock;
+import com.example.stock.Entity.Today;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-
+@Service
 public class DataMethod {
 	/*根据code返回改股票的所有评论信息
 	* 返回类型：ArrayList<String>
@@ -307,5 +309,51 @@ public class DataMethod {
 	 return forecast;
 	 }
 
+	 /*根据code获得对应的今日信息
+	* 返回Today类型
+	* 传入ts_code*/
+	 public Today findToday(String s){
+		 Today today=new Today();
+
+
+		 BufferedReader br=null;
+		 try {
+			 br = new BufferedReader(new FileReader("src/com/example/stock/python/data/todaydata.csv"));
+			 String line = "";
+			 while ((line = br.readLine()) != null) {
+				 //System.out.println(line);
+				 String[] strings=line.split(",");
+				 //System.out.println(line);
+				 if (strings[1].equals(s.substring(0,s.length()-3))) {
+					 System.out.println(line);
+					 System.out.println(strings.length);
+					 today.setCode(strings[1]);
+					 today.setName(strings[2]);
+					 today.setChangepercent(strings[3]);
+					 today.setTrade(strings[4]);
+					 today.setOpen(strings[5]);
+					 today.setHigh(strings[6]);
+					 today.setLow(strings[7]);
+					 today.setSettlement(strings[8]);
+					 today.setVolume(strings[9]);
+					 today.setTurnoverratio(strings[10]);
+					 today.setAmount(strings[11]);
+					 today.setPer(strings[12]);
+					 today.setPb(strings[13]);
+					 today.setMktcap(strings[14]);
+					 today.setNmc(strings[15]);
+
+				 }
+				 //System.out.println(line);
+				 //int i =line.lastIndexOf(",");
+
+
+				 //stocks.add(s);
+			 }
+		 }catch (Exception e) {
+		 }
+
+		 return today;
+	 }
 
 }
