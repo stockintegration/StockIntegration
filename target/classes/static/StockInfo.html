@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>股票详情</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .info-title{
+            font-family: 微软雅黑;
+            font-weight: bold;
+            background-color: #e2e2e2;
+            padding: 3px;
+        }
+        .row{
+            border: solid 1px gray;
+            border-bottom: none;
+            max-width: 1100px;
+            margin-left: 200px;
+            /*padding: 3px 3px 3px 3px;*/
+
+        }
+        li{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+        <div style="margin-top: 20px">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 style="text-align: center;margin-top: 0" >公司信息</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 info-title">法人代表</div>
+                <div class="col-md-2" id="chairman"></div>
+                <div class="col-md-2 info-title">总经理</div>
+                <div class="col-md-2" id="manager"></div>
+                <div class="col-md-2 info-title">董秘</div>
+                <div class="col-md-2" id="secretary"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 info-title">注册资本(万元)</div>
+                <div class="col-md-2" id="reg_capital"></div>
+                <div class="col-md-2 info-title">注册日期</div>
+                <div class="col-md-2" id="setup_date"></div>
+                <div class="col-md-2 info-title">所在地</div>
+                <div class="col-md-2" id="location"></div>
+            </div>
+            <div class="row" style="border-bottom: 1px solid">
+                <div class="col-md-2 info-title">公司介绍</div>
+                <div class="col-md-10" id="introduction"></div>
+            </div>
+
+        </div>
+
+    <div id="kline" style="width: 1300px;height: 600px;margin-left: 100px;margin-top: 100px"></div>
+
+    <div style="margin-top: 100px" id="forecast">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 style="text-align: center;margin-top: 0" >业绩预测</h2>
+            </div>
+        </div>
+
+    </div>
+
+        <table class="table table-hover table-bordered"style="width: 1100px;margin-left: 200px;margin-top: 100px">
+            <caption>网友评论</caption>
+
+            <tbody  id="comment" >
+
+            </tbody>
+        </table>
+
+        <ul class="pagination" id="pagination" style="margin-left: 200px;max-width: 1100px;cursor: pointer">
+
+        </ul>
+
+
+</body>
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/echarts.min.js"></script>
+<script src="js/StockInfo.js"></script>
+</html>

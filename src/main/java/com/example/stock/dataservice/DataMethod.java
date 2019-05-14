@@ -3,11 +3,13 @@ package com.example.stock.dataservice;
 import com.example.stock.Entity.Forecast;
 import com.example.stock.Entity.Kline;
 import com.example.stock.Entity.Stock;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+@Service
 public class DataMethod {
 	/*根据code返回改股票的所有评论信息
 	* 返回类型：ArrayList<String>
