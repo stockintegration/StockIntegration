@@ -355,5 +355,17 @@ public class DataMethod {
 
 		 return today;
 	 }
+	/*返回所有今日信息
+	* 返回ArrayList<Today> 类型*/
+	 public ArrayList<Today> getAlltoday(){
+	 	ArrayList<String> s=getAllstocks();
+		 ArrayList<Today> todays=new ArrayList<Today>();
+		 Today today;
+	 	for(int i=0;i<s.size();i++){
+	 		today=findToday(s.get(i));
+	 		todays.add(today);
+		}
+	 	return todays;
+	 }
 
 }
