@@ -33,7 +33,7 @@ public class DataMethod {
                int index=line.indexOf(",");
                int j=line.indexOf(",",index+1);
                //System.out.println(line.substring(j+1, i));
-               if (line.substring(index+1,j).equals(s.substring(0,s.length()-3))) {
+               if (line.substring(index+1,j).equals(s)) {
             	   if(!line.substring(j+1, i).equals("")){
             		   dataList.add(line.substring(j+1, i));
             	   }
@@ -55,7 +55,7 @@ public class DataMethod {
                int index=line.indexOf(",");
                int j=line.indexOf(",",index+1);
                
-               if (line.substring(index+1,j).equals(s.substring(0,s.length()-3))) {
+               if (line.substring(index+1,j).equals(s)) {
             	   if(!line.substring(j+1, i).equals("")){
             		   System.out.println(line.substring(j+1, i));
             		   dataList.add(line.substring(j+1, i));
@@ -88,8 +88,8 @@ public class DataMethod {
 				 int index=line.indexOf(",");
 
 				 int i=line.indexOf(",",index+1);
-				 if (line.substring(index+1, i).equals(code)) {
-					 s.setTs_code(line.substring(index+1, i));
+				 if ((line.substring(index+1, i).substring(0,line.substring(index+1, i).length()-3)).equals(code)) {
+					 s.setTs_code(code);
 					 System.out.println(line.substring(index+1, i));
 					 index=i;
 
@@ -164,7 +164,7 @@ public class DataMethod {
 	            		
 	               //System.out.println(line);
 	               String[] strings=line.split(",");
-	               if (strings[1].equals(s)) {
+	               if ((strings[1].substring(0,strings[1].length()-3)).equals(s)) {
 	            	   time.add(strings[2]);
 	            	   close.add(strings[3]);
 	            	   open.add(strings[4]);
@@ -210,7 +210,7 @@ public class DataMethod {
 	            		continue;
 	            	}
 	            	System.out.println(line);
-	            	strings.add(line);
+	            	strings.add(line.substring(0,line.length()-3));
 	               //System.out.println(line);
 	              
 	               //System.out.println(line.substring(j+1, i));
@@ -248,7 +248,7 @@ public class DataMethod {
 	            	int index=line.indexOf(",");
 		               
 		               int i=line.indexOf(",",index+1);
-		               if(line.substring(index+1, i).equals(s)){
+		               if((line.substring(index+1, i).substring(0,line.substring(index+1, i).length()-3)).equals(s)){
 		               //System.out.println(line.substring(index+1, i));
 		               index=i;
 		               
@@ -324,7 +324,7 @@ public class DataMethod {
 				 //System.out.println(line);
 				 String[] strings=line.split(",");
 				 //System.out.println(line);
-				 if (strings[1].equals(s.substring(0,s.length()-3))) {
+				 if (strings[1].equals(s)) {
 					 System.out.println(line);
 					 System.out.println(strings.length);
 					 today.setCode(strings[1]);
