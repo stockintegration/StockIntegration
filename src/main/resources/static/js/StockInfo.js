@@ -299,7 +299,6 @@ $.ajax({
     async:false,
     data:{"ts_code":ts_code},
     success:function (data) {
-        alert(data.length)
         researchs=data
         if(data.length<=20) {
             for (var i = 0; i < data.length; i++) {
