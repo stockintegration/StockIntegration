@@ -1,9 +1,6 @@
 package com.example.stock.dataservice;
 
-import com.example.stock.Entity.Forecast;
-import com.example.stock.Entity.Kline;
-import com.example.stock.Entity.Stock;
-import com.example.stock.Entity.Today;
+import com.example.stock.Entity.*;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -367,5 +364,106 @@ public class DataMethod {
 		}
 	 	return todays;
 	 }
+	/*根据code获得股票的分析信息
+    * 返回Arraylist<Analysis>
+    传入 ts_code*/
+	public ArrayList<Analysis> findAnalysis(String s){
+		ArrayList<Analysis> A=new ArrayList<Analysis>();
+		Analysis analysis;
+
+
+
+		BufferedReader br=null;
+		try {
+			br = new BufferedReader(new FileReader("src/main/java/com/example/stock/python/data/aiguyb.csv"));
+			String line = "";
+			while ((line = br.readLine()) != null) {
+				//System.out.println(line);
+				int index=line.indexOf(",");
+				String time=line.substring(0,index);
+				//System.out.println(time);
+				int i=line.indexOf(",",index+1);
+				String code=line.substring(index+1,i);
+				//System.out.println(code);
+				int last=line.lastIndexOf(",");
+				String author =line.substring(last+1);
+				int llast=line.substring(0,last).lastIndexOf(",");
+				String title=line.substring(i+1,llast);
+				//System.out.println(title);
+				//System.out.println(author);
+				if (code.equals(s)) {
+					analysis=new Analysis();
+					analysis.setAuthor(author);
+					analysis.setTime(time);
+					analysis.setTs_code(code);
+					analysis.setTitle(title);
+					A.add(analysis);
+				}
+
+
+
+				//System.out.println(line);
+				//int i =line.lastIndexOf(",");
+
+
+				//stocks.add(s);
+			}
+			System.out.println(A.size());
+		}catch (Exception e) {
+		}
+
+		BufferedReader br1=null;
+		try {
+			br1 = new BufferedReader(new FileReader("src/main/java/com/example/stock/python/data/dongfangyb.csv"));
+			String line = "";
+			int count=0;
+			while ((line = br1.readLine()) != null) {
+
+				//System.out.println(line);
+				//System.out.println(line);
+				int index=line.indexOf(",");
+				String timedraft=line.substring(0,index);
+				String[] tStrings=timedraft.split(" ");
+				String time=tStrings[0];
+
+
+				int i=line.indexOf(",",index+1);
+				String code=line.substring(index+1, i);
+
+				index=i;
+
+
+				i=line.indexOf(",",index+1);
+				String author=line.substring(index+1, i);
+
+				index=i;
+
+				i=line.indexOf(",",index+1);
+				//pingji
+				index=i;
+
+				int titleleft=line.indexOf(",",index+1);
+
+				int last=line.lastIndexOf(",");
+				String title=line.substring(titleleft+1,last);
+
+				if (code.equals(s)) {
+					analysis=new Analysis();
+					analysis.setAuthor(author);
+					analysis.setTime(time);
+					analysis.setTs_code(code);
+					analysis.setTitle(title);
+					A.add(analysis);
+					System.out.println(code);
+					System.out.println(time);
+					System.out.println(author);
+					System.out.println(title);
+				}
+			}
+		}catch (Exception e) {
+		}
+		System.out.println(A.size());
+		return A;
+	}
 
 }
