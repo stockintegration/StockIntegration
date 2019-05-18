@@ -3,6 +3,7 @@ package com.example.stock.controller;
 import com.example.stock.Entity.Analysis;
 import com.example.stock.dataservice.DataMethod;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
  * url                  /research
  * 方法                 POST
  * */
+@Controller
 public class researchReportController {
     @Autowired
     private DataMethod dataMethod;

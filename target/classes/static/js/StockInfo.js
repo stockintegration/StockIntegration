@@ -1,6 +1,8 @@
 var ts_code=window.location.search.substr(1)
 var comments=[]
+var researchs=[]
 var totalPages=0
+var reTotalPages=0
 $.ajax({
     type: "POST",
     url: "http://localhost:8080/basicInfo",
@@ -270,17 +272,17 @@ $.ajax({
     data:{"ts_code":ts_code},
     success:function (data) {
         comments=data
-        if(data.length<=10) {
+        if(data.length<=20) {
             for (var i = 0; i < data.length; i++) {
                 document.getElementById('comment').innerHTML += "            <tr><td>" + data[i] + "</td></tr>\n"
             }
         }
         else {
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < 20; i++) {
                 document.getElementById('comment').innerHTML += "            <tr><td>" + data[i] + "</td></tr>\n"
             }
 
-            totalPages = Math.floor((data.length - 1) / 10) + 1;
+            totalPages = Math.floor((data.length - 1) / 20) + 1;
             document.getElementById('pagination').innerHTML+=" <li><a href=\"javascript:void(0)\" onclick='turnPage(1)'>&laquo;</a></li>"
             for (var i = 1; i <= totalPages; i++) {
                 document.getElementById('pagination').innerHTML += "<li><a href='javascript:void(0)' onclick='turnPage("+i+")'>"+i+"</a></li>"
@@ -291,16 +293,71 @@ $.ajax({
     }
 })
 
+$.ajax({
+    type:"POST",
+    url:"http://localhost:8080/research",
+    async:false,
+    data:{"ts_code":ts_code},
+    success:function (data) {
+        alert(data.length)
+        researchs=data
+        if(data.length<=20) {
+            for (var i = 0; i < data.length; i++) {
+                 document.getElementById('research').innerHTML += "            <tr><td colspan='6'>" + data[i].title + "</td>" +
+                     "<td colspan='3'>"+data[i].author+"</td>"+
+                     "<td colspan='3'>"+data[i].time+"</td></tr>"
+            }
+        }
+        else {
+            for (var i = 0; i < 20; i++) {
+                document.getElementById('research').innerHTML += "            <tr><td colspan='6'>" + data[i].title + "</td>" +
+                    "<td colspan='3'>"+data[i].author+"</td>"+
+                    "<td colspan='3'>"+data[i].time+"</td></tr>"
+            }
+
+            reTotalPages = Math.floor((data.length - 1) / 20) + 1;
+            document.getElementById('pagination2').innerHTML+=" <li><a href=\"javascript:void(0)\" onclick='turnPage2(1)'>&laquo;</a></li>"
+            for (var i = 1; i <= reTotalPages; i++) {
+                document.getElementById('pagination2').innerHTML += "<li><a href='javascript:void(0)' onclick='turnPage2("+i+")'>"+i+"</a></li>"
+            }
+            document.getElementById('pagination2').innerHTML+=" <li><a href=\"javascript:void(0)\" onclick='turnPage2("+reTotalPages+")'>&raquo;</a></li>"
+
+        }
+    }
+})
+
 function turnPage(page) {
     document.getElementById('comment').innerHTML = ""
     if (page == totalPages) {
-        for (var i = 10 * (page - 1); i < comments.length; i++) {
+        for (var i = 20 * (page - 1); i < comments.length; i++) {
             document.getElementById('comment').innerHTML += "            <tr><td>" + comments[i] + "</td></tr>\n"
         }
     }
     else {
-        for (var i = 10 * (page - 1); i < page * 10; i++) {
+        for (var i = 20 * (page - 1); i < page * 20; i++) {
             document.getElementById('comment').innerHTML += "            <tr><td>" + comments[i] + "</td></tr>\n"
+        }
+    }
+}
+
+/**
+ * 研究翻页
+ * @param page
+ */
+function turnPage2(page) {
+    document.getElementById('research').innerHTML = ""
+    if (page == totalPages) {
+        for (var i = 20*(page - 1); i < researchs.length; i++) {
+            document.getElementById('research').innerHTML += "            <tr><td colspan='6'>" + researchs[i].title + "</td>" +
+                "<td colspan='3'>"+researchs[i].author+"</td>"+
+                "<td colspan='3'>"+researchs[i].time+"</td></tr>"
+        }
+    }
+    else {
+        for (var i = 20 * (page - 1); i < page * 20; i++) {
+            document.getElementById('research').innerHTML += "            <tr><td colspan='6'>" + researchs[i].title + "</td>" +
+                "<td colspan='3'>"+researchs[i].author+"</td>"+
+                "<td colspan='3'>"+researchs[i].time+"</td></tr>"
         }
     }
 }
