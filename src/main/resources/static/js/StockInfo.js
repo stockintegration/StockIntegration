@@ -295,7 +295,7 @@ $.ajax({
 
 $.ajax({
     type:"POST",
-    url:"http://localhost:8080/research",
+    url:"http://localh  ost:8080/research",
     async:false,
     data:{"ts_code":ts_code},
     success:function (data) {
